@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>My Giga Pet</title>
+    <link rel="icon" href="images/Smiling_Husky.png" type="image/png">
+    <meta name="description" content="Take care of Apollo, your Giga Pet!">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header>
+      <h1>
+        My Giga Pet 
+      </h1>
+      <p class="subtitle">Take care of your virtual pet!</p>
+    </header>
+
+    <main>
+      <!--Pet picture-->
+      <section class="pet-image-container">
+        <img class="pet-image" src="images/Happy_Husky.png" alt="Apollo the Husky">
+      </section>
+
+      <section class="dashboard">
+        <div>Name: <strong><span class="name"></span></strong></div>
+        <div>Weight: <strong><span class="weight"></span> lbs</strong></div>
+        <div>Happiness: <strong><span class="happiness"></span> / 100</strong></div>
+        <div>Cleanliness: <strong><span class="cleanliness"></span> / 100</strong></div>
+        <div class="button-container">
+          <button class="treat-button">
+            Treat
+          </button>
+          <button class="play-button">
+            Play
+          </button>
+          <button class="exercise-button">
+            Exercise
+          </button>
+          <button class="clean-button">
+            Groom
+          </button>
+        </div>
+      </section>
+    </main>
+    <!-- Pet's comment after each button press-->
+     <section class="husky-message">
+      <span class="husky-message-label"> <span class="name"></span> says:</span>
+      <img class="husky-icon" src="images/Smiling_Husky.png" alt="Smiling Husky Icon">
+      <p class="husky-message-text">Woof! Woof! Let's have some fun today!</p>
+     </section>
+
+    <!-- This part loads the jQuery library and the custom script -->
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"
+            integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
+            crossorigin="anonymous"></script>
+    <script src="script.js"></script> <!-- JQuery must load BEFORE script.js because script.js uses $ -->
+  </body>
+</html>

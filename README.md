@@ -1,1 +1,2 @@
-# comp484-hw10-Pt
+# Comp484-Project2-PT
+Website host: https://p-yolotl.github.io/comp484-Project2-PT/

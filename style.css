@@ -1,0 +1,289 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Fredoka', helvetica, arial, sans-serif;
+  margin: 0;
+  padding: 25px;
+  background-image: url("images/Garden.png");
+  background-size: cover;          /* Cover the entire background */
+  background-position: center;     /* Center the background image */
+  background-repeat: no-repeat;    /* Stop the background image from repeating */
+  min-height: 100vh;               /* At least the full height of the screen */
+  color: #1f3d1f;
+}
+
+/* ------------ Title ------------ */
+header {
+  text-align: center;
+}
+
+h1 {
+  margin: 0;
+  font-size: 64px;
+  font-weight: 700;
+  color: #0b4d1c;
+  /* Thick white outline around the letters */
+  text-shadow: 3px 3px 0 #fff, -3px -3px 0 #fff, 3px -3px 0 #fff, -3px 3px 0 #fff,
+               0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+.subtitle {
+  display: inline-block;
+  margin: 8px 0 0;
+  padding: 6px 40px;
+  background: #ffd84d;
+  border-radius: 12px;
+  color: #5a3b00;
+  box-shadow: 0 4px 0 #e0a800;
+}
+
+/* ------------ Pet image + stats card ------------ */
+main {
+  display: flex;
+  justify-content: center;   /* Center the content horizontally */
+  align-items: center;       /* Line up the content vertically */
+  flex-wrap: wrap;           /* Move to the next line on small screens */
+  gap: 20px;                 /* Space between the pet and the card */
+  margin-top: 120px;         /* Space below the title */
+}
+
+/* Fixed-size box for Apollo's picture.
+   All the pictures have different widths, so without a fixed size
+   the dashboard would move every time the picture changes. */
+.pet-image-container {
+  width: 360px;
+  height: 440px;
+  padding: 10px;
+  flex-shrink: 0;                 /* Stops the box from shrinking on small screens */
+}
+
+.pet-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;            /* Keeps the picture inside the box */
+  object-position: bottom;         /* Aligns the picture to the bottom of the box */
+}
+
+.dashboard {
+  width: 450px;
+  aspect-ratio: 1 / 1;                   /* Makes the card a square (width = height) */
+  display: flex;
+  flex-direction: column;                /* Stack the title, stats, and buttons */
+  justify-content: center;               /* Center everything vertically inside the square */
+  padding: 20px 25px;
+  background: rgba(241, 251, 230, 0.8);  /* Light green, slightly see-through */
+  border: 6px solid #6cc04a;
+  border-radius: 24px;
+  position: relative;
+  top: -50px;  /* Move the card up to line up with the pet image */
+  left: 80px;  /* Pushes the card 80px to the right */
+}
+
+/* "My Pet" heading at the top of the card, added with CSS only */
+.dashboard::before {
+  content: "My Pet";
+  display: block;
+  margin-bottom: 12px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+  color: #0b4d1c;
+}
+
+/* Each stat row (Name, Weight...) becomes a pill shape.
+   ":not(.button-container)" skips the div that holds the buttons. */
+.dashboard > div:not(.button-container) {
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  background: #ddf3cc;
+  border-radius: 999px;
+  font-size: 20px;
+}
+
+/* ------------ Action buttons: 2 in one row inside the card ------------ */
+.button-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);   /* Two equal columns */
+  gap: 28px 16px;                               /* Row gap is bigger because the 3D edge hangs below each button */
+  margin-top: 20px;
+  margin-bottom: 15px;                      /* Room for the 3D edge of the bottom row */ 
+}
+
+.button-container button {
+  position: relative;
+  top: 0;
+  cursor: pointer;
+  font-family: 'Carter One', 'Fredoka', sans-serif;
+  font-size: 18px;
+  line-height: 1.5em;
+  letter-spacing: .1em;
+  color: #fff;
+  padding: 8px 15px 10px;
+  border: none;
+  border-top: 3px solid rgba(255, 255, 255, 0.3);   /* Lighter top edge */
+  border-radius: 8px;
+}
+
+/* The emoji icons (added with ::before, so the HTML stays the same).
+   text-shadow: none keeps the colored outline off the emoji. */
+.button-container button::before {
+  text-shadow: none;
+}
+
+/* The white shine on the top edge.
+   The original design used ::before and ::after for the long streak and the
+   small dot, but ::before already holds the emoji, so both shine pieces are
+   drawn in ::after with one gradient (white, gap, white). */
+.button-container button::after {
+  content: '';
+  position: absolute;
+  top: -3%;
+  right: 5%;
+  width: 48%;
+  height: 10%;
+  background: linear-gradient(to left,
+              #fff 0 10.4%,              /* Small dot */
+              transparent 10.4% 16.7%,   /* Gap */
+              #fff 16.7% 100%);          /* Long streak */
+  border-radius: 99px;
+}
+/* Treat: yellow/orange */
+.treat-button {
+  background: repeating-linear-gradient(45deg, #ffc800, #ffc800 5px, #ffc200 5px, #ffc200 10px);
+  border-bottom: 3px solid rgba(205, 102, 0, 0.5);
+  text-shadow: 2px 2px 1px #e78700, -2px 2px 1px #e78700, 2px -2px 1px #e78700, -2px -2px 1px #e78700, 0px 2px 1px #e78700, 0px -2px 1px #e78700, 0px 4px 1px #c96100, 2px 4px 1px #c96100, -2px 4px 1px #c96100;
+  box-shadow: 0 6px 0 #b76113, 0 8px 1px 1px rgba(0,0,0,0.3), 0 10px 0 5px #75421f, 0 12px 0 5px #8a542b, 0 15px 0 5px #593116, 0 15px 1px 6px rgba(0,0,0,0.3);
+}
+
+.treat-button::before {
+  content: "🦴 ";
+}
+
+/* Play: red */
+.play-button {
+  background: repeating-linear-gradient(45deg, #ff4f4c, #ff4f4c 5px, #ff4643 5px, #ff4643 10px);
+  border-bottom: 3px solid rgba(160, 25, 23, 0.5);
+  text-shadow: 2px 2px 1px #d72d21, -2px 2px 1px #d72d21, 2px -2px 1px #d72d21, -2px -2px 1px #d72d21, 0px 2px 1px #d72d21, 0px -2px 1px #d72d21, 0px 4px 1px #930704, 2px 4px 1px #930704, -2px 4px 1px #930704;
+  box-shadow: 0 6px 0 #ae2725, 0 8px 1px 1px rgba(0,0,0,0.3), 0 10px 0 5px #831614, 0 12px 0 5px #a33634, 0 15px 0 5px #631716, 0 15px 1px 6px rgba(0,0,0,0.3);
+}
+
+.play-button::before {
+  content: "🥎 ";
+}
+
+/* Exercise: blue */
+.exercise-button {
+  background: repeating-linear-gradient(45deg, #3ebbf7, #3ebbf7 5px, #45b1f4 5px, #45b1f4 10px);
+  border-bottom: 3px solid rgba(16, 91, 146, 0.5);
+  text-shadow: 2px 2px 1px #0066a2, -2px 2px 1px #0066a2, 2px -2px 1px #0066a2, -2px -2px 1px #0066a2, 0px 2px 1px #0066a2, 0px -2px 1px #0066a2, 0px 4px 1px #004a87, 2px 4px 1px #004a87, -2px 4px 1px #004a87;
+  box-shadow: 0 6px 0 #266b91, 0 8px 1px 1px rgba(0,0,0,0.3), 0 10px 0 5px #12517d, 0 12px 0 5px #1a6b9a, 0 15px 0 5px #0c405e, 0 15px 1px 6px rgba(0,0,0,0.3);
+}
+
+.exercise-button::before {
+  content: "🏋️ ";
+}
+
+/* Clean: green */
+.clean-button {
+  background: repeating-linear-gradient(45deg, #54d440, #54d440 5px, #52cc3f 5px, #52cc3f 10px);
+  border-bottom: 3px solid rgba(40, 117, 29, 0.5);
+  text-shadow: 2px 2px 1px #348628, -2px 2px 1px #348628, 2px -2px 1px #348628, -2px -2px 1px #348628, 0px 2px 1px #348628, 0px -2px 1px #348628, 0px 4px 1px #1d4c16, 2px 4px 1px #1d4c16, -2px 4px 1px #1d4c16;
+  box-shadow: 0 6px 0 #348628, 0 8px 1px 1px rgba(0,0,0,0.3), 0 10px 0 5px #2a6d20, 0 12px 0 5px #39822e, 0 15px 0 5px #1d4c16, 0 15px 1px 6px rgba(0,0,0,0.3);
+}
+
+.clean-button::before {
+  content: "🛁 ";
+}
+
+/* Hover: the button sinks 2px and its 3D edge gets 2px shorter,
+   so it looks like it is being pressed down */
+.button-container button:hover {
+  top: 2px;
+}
+
+.treat-button:hover {
+  box-shadow: 0 4px 0 #b76113, 0 6px 1px 1px rgba(0,0,0,0.3), 0 8px 0 5px #75421f, 0 10px 0 5px #8a542b, 0 13px 0 5px #593116, 0 13px 1px 6px rgba(0,0,0,0.3);
+}
+
+.play-button:hover {
+  box-shadow: 0 4px 0 #ae2725, 0 6px 1px 1px rgba(0,0,0,0.3), 0 8px 0 5px #831614, 0 10px 0 5px #a33634, 0 13px 0 5px #631716, 0 13px 1px 6px rgba(0,0,0,0.3);
+}
+
+.exercise-button:hover {
+  box-shadow: 0 4px 0 #266b91, 0 6px 1px 1px rgba(0,0,0,0.3), 0 8px 0 5px #12517d, 0 10px 0 5px #1a6b9a, 0 13px 0 5px #0c405e, 0 13px 1px 6px rgba(0,0,0,0.3);
+}
+
+.clean-button:hover {
+  box-shadow: 0 4px 0 #348628, 0 6px 1px 1px rgba(0,0,0,0.3), 0 8px 0 5px #2a6d20, 0 10px 0 5px #39822e, 0 13px 0 5px #1d4c16, 0 13px 1px 6px rgba(0,0,0,0.3);
+}
+
+/* ------------ Speech bubble ------------ */
+.husky-message {
+  position: relative;
+  max-width: 900px;
+  margin: 40px auto 0;
+  padding: 35px 30px 25px;
+  text-align: center;
+  background: #fffdf5;
+  border: 6px solid #c9ec9f;
+  border-radius: 24px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  display: flex;                  /* Puts the icon and the text side by side */
+  align-items: center;            /* Lines up the icon with the middle of the text */
+  justify-content: center;        /* Keeps the icon and text centered in the bubble */
+  gap: 20px;                      /* Space between the icon and the text */
+}
+/* Apollo's icon inside the speech bubble */
+.husky-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;             /* Makes the icon circular */
+  flex-shrink: 0;                 /* Stops the icon from shrinking on small screens */
+}
+
+/* Green "Apollo says:" tag sitting on the top edge of the bubble */
+.husky-message-label {
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 24px;
+  background: #4c9a2a;
+  color: #fff;
+  border-radius: 999px;
+  font-size: 22px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.husky-message-text {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+/* The paw icon that .html() adds after each message */
+.paw {
+  color: #5a3b00;
+}
+
+/* ------------ Animations (turned on by jQuery .addClass()) ------------ */
+.hop {
+  animation: hop 0.4s ease;
+}
+
+@keyframes hop {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-25px); }
+}
+
+.pop {
+  animation: pop 0.4s ease;
+}
+
+@keyframes pop {
+  0%   { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
